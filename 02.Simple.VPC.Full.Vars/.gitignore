@@ -1,0 +1,6 @@
+.terraform
+secrets.tfvars
+terraform.tfvars
+*.pfx
+backendconf.tf
+crash.log
