@@ -16,16 +16,16 @@ variable "cidr" {
   default     = "10.0.0.0/16"
 }
 
-variable "max_azs_number" {
-  description = "A number for defining the maximum number of AZs to use in the region."
-  type        = number
-  default     = 2
+variable "azs" {
+  description = "A list of availability zones names or ids in the region"
+  type        = list(string)
+  default     = ["eu-west-1a","eu-west-1b"]
 }
 
-variable "private_subnets_newbits" {
-  description = "List of number of additional bits with which to extend the CIDR prefix for private subnets. The length of the list provides the number of subnets to build. For example, if given a prefix ending in /16 and a newbits value of 8, the resulting subnet address will have length /24."
-  type        = list(number)
-  default     = [8, 8, 8, 8, 8, 8]
+variable "private_subnets_newbit" {
+  description = "Number of additional bits with which to extend the CIDR prefix for private subnets. The length of the list provides the number of subnets to build. For example, if given a prefix ending in /16 and a newbits value of 8, the resulting subnet address will have length /24."
+  type        = number
+  default     = 8
 }
 
 variable "private_subnets_netnum_offset" {
@@ -34,10 +34,10 @@ variable "private_subnets_netnum_offset" {
   default     = 0
 }
 
-variable "public_subnets_newbits" {
-  description = "List of number of additional bits with which to extend the CIDR prefix for public subnets. The length of the list provides the number of subnets to build. For example, if given a prefix ending in /16 and a newbits value of 8, the resulting subnet address will have length /24."
-  type        = list(number)
-  default     = [8, 8, 8]
+variable "public_subnets_newbit" {
+  description = "Number of additional bits with which to extend the CIDR prefix for public subnets. The length of the list provides the number of subnets to build. For example, if given a prefix ending in /16 and a newbits value of 8, the resulting subnet address will have length /24."
+  type        = number
+  default     = 8
 }
 
 variable "public_subnets_netnum_offset" {
