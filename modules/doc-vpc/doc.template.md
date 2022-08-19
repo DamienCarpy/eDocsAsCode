@@ -10,7 +10,7 @@
 ## **Subnets**
 * This VPC counts `${length(public_subnets)}` public subnets with the following IPv4 range:
 | Public subnet number | Public subnet IP range |
-|-|-|
+|:---:|:---:|
 %{ for pub in public_subnets ~}
 | ${pub} | %{ if element(public_subnets_cidr_blocks,index(public_subnets,pub)) == null } ${element(public_subnets_ipv6_cidr_blocks,index(public_subnets,pub))} %{ else } ${element(public_subnets_cidr_blocks,index(public_subnets,pub))}  %{ endif ~}|
 %{ endfor ~}
