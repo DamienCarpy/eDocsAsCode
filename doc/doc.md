@@ -8,8 +8,7 @@
 
 ## **Subnets**
 * This VPC counts `2` public subnets with the following IPv4 range:
-
 | Public subnet number | Public subnet IP range |
 |-|-|
-| subnet-0677678d45dd2ae61 |  10.0.100.0/24  |
-| subnet-002b252a34e91d064 |  10.0.101.0/24  |
+| subnet-0d2edee86c5346e84 |  10.0.100.0/24  |
+| subnet-0090df633ca5ef275 |  10.0.101.0/24  |

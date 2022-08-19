@@ -16,10 +16,10 @@ variable "cidr" {
   default     = "10.0.0.0/16"
 }
 
-variable "azs" {
-  description = "A list of availability zones names or ids in the region"
+variable "azs_letter_list" {
+  description = "A list of availability zones letters in the region"
   type        = list(string)
-  default     = ["eu-west-1a","eu-west-1b"]
+  default     = ["a", "b"]
 }
 
 variable "private_subnets_newbit" {
