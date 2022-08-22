@@ -22,7 +22,13 @@ variable "azs_letter_list" {
   default     = ["a", "b"]
 }
 
-variable "private_subnets_newbit" {
+variable "private_subnets_switch" {
+  description = "Chose whether using private subnets."
+  type        = bool
+  default     = true
+}
+
+variable "private_subnets_newbits" {
   description = "Number of additional bits with which to extend the CIDR prefix for private subnets. The length of the list provides the number of subnets to build. For example, if given a prefix ending in /16 and a newbits value of 8, the resulting subnet address will have length /24."
   type        = number
   default     = 8
@@ -34,7 +40,13 @@ variable "private_subnets_netnum_offset" {
   default     = 0
 }
 
-variable "public_subnets_newbit" {
+variable "public_subnets_switch" {
+  description = "Chose whether using public subnets."
+  type        = bool
+  default     = true
+}
+
+variable "public_subnets_newbits" {
   description = "Number of additional bits with which to extend the CIDR prefix for public subnets. The length of the list provides the number of subnets to build. For example, if given a prefix ending in /16 and a newbits value of 8, the resulting subnet address will have length /24."
   type        = number
   default     = 8

@@ -14,9 +14,10 @@ module "vpc" {
 
 module "doc-vpc" {
   source                           = "../modules/doc-vpc"
-  name                             = module.vpc.name
-  vpc_cidr_block                   = module.vpc.vpc_cidr_block
-  azs                              = module.vpc.azs
+  region                           = var.region
+  name                             = var.name
+  vpc_cidr_block                   = var.cidr
+  azs                              = data.aws_availability_zones.available.names
   private_subnets                  = module.vpc.private_subnets
   private_subnets_cidr_blocks      = module.vpc.private_subnets_cidr_blocks
   private_subnets_ipv6_cidr_blocks = module.vpc.private_subnets_ipv6_cidr_blocks
@@ -29,4 +30,9 @@ module "doc-vpc" {
 resource "local_file" "doc" {
   content  = module.doc-vpc.doc-md
   filename = "../doc/doc.md"
+}
+
+resource "local_file" "diagram" {
+  content  = module.doc-vpc.diagram-py
+  filename = "../doc/diagram.py"
 }

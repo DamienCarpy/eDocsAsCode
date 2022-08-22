@@ -1,6 +1,6 @@
 # **VPC parameters**
 ## **Global parameters**
-* This VPC is named `${name}`.
+* This VPC is named `${name}` and resides in the `${region}` region.
 * It uses the following CIDR block: `${vpc_cidr_block}`.
 * It spans the `${length(azs)}` following Availability Zones (AZs):
 %{ for az in azs ~}
@@ -8,10 +8,10 @@
 %{ endfor ~}
 
 ## **Subnets**
-* This VPC counts `${length(public_subnets)}` public subnets with the following IPv4 range:
+* This VPC counts `${length(public_subnets)}` public subnets and  `${length(private_subnets)}` private subnets:
 
-| Public subnet number | Public subnet IP range |
-| --- | --- |
-%{ for pub in public_subnets ~}
-| ${pub} | %{ if element(public_subnets_cidr_blocks,index(public_subnets,pub)) == null } ${element(public_subnets_ipv6_cidr_blocks,index(public_subnets,pub))} %{ else } ${element(public_subnets_cidr_blocks,index(public_subnets,pub))} %{ endif ~}|
+| Availability Zone | Public subnet ID | Public subnet IP range | Private subnet ID | Private subnet IP range | 
+| --- | --- | --- | --- | --- |
+%{ for az in azs ~}
+| ${az} |%{ if length(public_subnets) != 0 } ${element(public_subnets,index(azs,az))} %{ else ~} "N/A" %{ endif ~} | %{ if length(public_subnets_cidr_blocks) == 0 } %{ if length(public_subnets_ipv6_cidr_blocks) == 0 } "N/A" %{ else ~} ${element(public_subnets_ipv6_cidr_blocks,index(azs,az))} %{ endif ~} %{ else ~} ${element(public_subnets_cidr_blocks,index(azs,az))} %{ endif ~}|%{ if length(private_subnets) != 0 } ${element(private_subnets,index(azs,az))} %{ else ~} "N/A" %{ endif ~}| %{ if length(private_subnets_cidr_blocks) == 0 }%{ if length(private_subnets_ipv6_cidr_blocks) == 0 } "N/A" %{ else ~} ${element(private_subnets_ipv6_cidr_blocks,index(azs,az))} %{ endif ~} %{ else ~} ${element(private_subnets_cidr_blocks,index(azs,az))} %{ endif ~}|
 %{ endfor ~}

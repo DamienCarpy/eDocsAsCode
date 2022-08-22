@@ -1,3 +1,8 @@
+variable "region" {
+  description = "Name of the main AWS region."
+  type        = string
+}
+
 variable "name" {
   description = "The name of the VPC specified as argument to this module"
   type        = string
