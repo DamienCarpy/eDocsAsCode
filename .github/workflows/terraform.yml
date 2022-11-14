@@ -75,8 +75,8 @@ jobs:
       run: terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      run: terraform fmt -check
+    # - name: Terraform Format
+    #   run: terraform fmt -check
 
     # Checks Terraform syntax
     - name: Terraform Validation
@@ -92,6 +92,8 @@ jobs:
       # if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
       id: tf-apply
       run: terraform apply -auto-approve -input=false
+    
+    # Push changes to GitHub to update interpolated generated files
     - name: Push changes
       if: steps.tf-apply.outputs.modified == 'true'
       run: |

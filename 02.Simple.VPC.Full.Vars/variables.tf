@@ -19,7 +19,7 @@ variable "cidr" {
 variable "azs_letter_list" {
   description = "A list of availability zones letters in the region"
   type        = list(string)
-  default     = ["a","b"]
+  default     = ["a", "b"]
 }
 
 variable "private_subnets_switch" {
