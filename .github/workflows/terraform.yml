@@ -95,7 +95,7 @@ jobs:
     
     # Push changes to GitHub to update interpolated generated files
     - name: Push changes
-      if: steps.tf-apply.outputs.modified == 'true'
+      if: steps.tf-apply.outputs.exit == 2
       run: |
         git config --global user.name 'Damien Carpy'
         git config --global user.email ${{ secrets.GH_PERSONAL_EMAIL }}
