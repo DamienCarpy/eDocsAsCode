@@ -92,11 +92,12 @@ jobs:
       id: tf-apply
       run: terraform apply -auto-approve -input=false
     
-    - name: Diagrams
+    - name: Install Diagrams
       uses: actions/setup-python@v4
-        run: |
-          pip install diagrams
-          python ./../doc/diagram.py
+      run: pip install diagrams
+
+    - name: Run Diagrams
+        run: python ./../doc/diagram.py
 
     # Push changes to GitHub to update interpolated generated files
     - name: Commit changes
