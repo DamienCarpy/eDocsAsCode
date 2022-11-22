@@ -8,17 +8,12 @@ with Diagram("my-vpc", show=False, direction="TB"):
 
     with Cluster("eu-west-1"):
 
-        with Cluster("eu-west-1b"):
-            with Cluster("public"):
-                subnet_b = Subnet("10.0.101.0/24")
-
-            with Cluster("private"):
-                subnet_b = Subnet("10.0.1.0/24")
-
         with Cluster("eu-west-1a"):
             with Cluster("public"):
+
                 subnet_a = Subnet("10.0.100.0/24")
 
             with Cluster("private"):
+
                 subnet_a = Subnet("10.0.0.0/24")
 
