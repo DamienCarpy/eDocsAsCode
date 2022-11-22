@@ -92,8 +92,13 @@ jobs:
       id: tf-apply
       run: terraform apply -auto-approve -input=false
     
-    - name: Install Diagrams
+    - name: Install Python + pip
       uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        cache: 'pip' # caching pip dependencies
+    
+    - name: Install Diagrams
       run: pip install diagrams
 
     - name: Run Diagrams
