@@ -100,7 +100,7 @@ jobs:
 
     - name: Run Diagrams
       run: |
-        cd ./doc
+        cd ./../doc
         python diagram.py
 
     # Push changes to GitHub to update interpolated generated files
