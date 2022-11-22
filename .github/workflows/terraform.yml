@@ -92,6 +92,14 @@ jobs:
       id: tf-apply
       run: terraform apply -auto-approve -input=false
     
+    - name: Diagrams
+      uses: actions/setup-python@v4
+        with:
+          cache: 'pip' # caching pip dependencies
+        run: |
+          pip install diagrams
+          python ./../doc/diagram.py
+
     # Push changes to GitHub to update interpolated generated files
     - name: Commit changes
       run: |
