@@ -103,7 +103,11 @@ jobs:
         pip install diagrams
 
     - name: Run Diagrams
-      run: python diagram.py
+      run: |
+        pwd
+        cd ./../doc
+        pwd
+        python diagram.py
 
     # Push changes to GitHub to update interpolated generated files
     - name: Commit changes
