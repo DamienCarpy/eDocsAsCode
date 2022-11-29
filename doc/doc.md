@@ -1,4 +1,6 @@
 # **VPC parameters**
+## **Diagram**
+![my-vpc](./my-vpc.png)
 ## **Global parameters**
 * This VPC is named `my-vpc` and resides in the `eu-west-1` region.
 * It uses the following CIDR block: `10.0.0.0/16`.
