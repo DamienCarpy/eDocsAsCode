@@ -1,4 +1,6 @@
 # **VPC parameters**
+## **Diagram**
+![${name}](./${name}.png)
 ## **Global parameters**
 * This VPC is named `${name}` and resides in the `${region}` region.
 * It uses the following CIDR block: `${vpc_cidr_block}`.
