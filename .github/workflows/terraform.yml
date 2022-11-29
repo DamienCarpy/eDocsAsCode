@@ -93,9 +93,7 @@ jobs:
       run: terraform apply -auto-approve -input=false
     
     - name: Install Graphviz package
-      run: |
-      sudo apt-get update
-      sudo apt-get install -y graphviz
+      uses: ts-graphviz/setup-graphviz@v1
 
     - name: Install Python + pip
       uses: actions/setup-python@v4
