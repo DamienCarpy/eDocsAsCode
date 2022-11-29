@@ -95,18 +95,12 @@ jobs:
     - name: Install Python + pip
       uses: actions/setup-python@v4
     
-    - name: Install Diagrams
+    - name: Install & run Diagrams
       run: |
         pwd
         cd ./../doc
         pwd
         pip install diagrams
-
-    - name: Run Diagrams
-      run: |
-        pwd
-        cd ./../doc
-        pwd
         python diagram.py
 
     # Push changes to GitHub to update interpolated generated files
