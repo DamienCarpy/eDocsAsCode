@@ -3,7 +3,7 @@
 > :calendar: December 2022 - [Damien Carpy](https://github.com/DamienCarpy) - #[Terraform](https://github.com/search?q=terraform) #[IaC](https://github.com/search?q=iac) #[DocsAsCode](https://github.com/search?q=docsascode)
 
 <p align="center">
-    <img src="https://images.unsplash.com/photo-1561297884-75113adab185?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8" width="400">
+    <img src="https://images.unsplash.com/photo-1561297884-75113adab185" width="400">
 </p>
 
 `TAD`, `HLD`, `LLD`, `technical diagram`, `readme`: these types of **deliverables** are **essential** to describe our IT projects, but over time they become a real **headache** to **update**. They might even seem far away from the tools reserved for computer code. But what if it was possible to make these deliverables dynamic, at the same pace as code? This is indeed the case, thanks to the [docs-as-code](https://www.writethedocs.org/guide/docs-as-code/) philosophy, and the use of [Terraform](https://www.terraform.io/) and [terraform-docs](https://terraform-docs.io/).
