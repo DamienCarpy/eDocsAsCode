@@ -43,6 +43,8 @@ Let's see how it works, through four examples:
 * Three examples using Terraform,
 * One example using terraform-docs.
 
+---
+
 <details><summary><b><font size="+2">1. Dynamic documentation with Terraform</b></font></summary>
 
 In concrete terms, how do you make a text variable? In the Terraform toolkit, two essential tools open the way to making text variabilization: string templates [interpolation](https://www.terraform.io/docs/language/expressions/strings.html#interpolation) and the [`templatefile`](https://www.terraform.io/docs/language/functions/templatefile.html) function.
@@ -333,6 +335,8 @@ variable "PostgreDbCollation" {
 </details>
 </details>
 
+---
+
 <details><summary><b><font size="+2">2. Variable iterative interpolation with terraform-docs</b></font></summary>
 
 Keeping up-to-date a readme file describing the use of a script or Terraform modules can quickly become a **chore**, especially because of the **large number of input and output variables** that a readme must contain. And a chore is a task that will quickly be **forgotten**, resulting in an **obsolete** readme file.
@@ -378,7 +382,7 @@ content: |-
 </details>
 </details>
 
-<br><br>
+---
 
 # **Conclusion**
 
