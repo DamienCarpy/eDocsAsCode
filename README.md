@@ -24,6 +24,10 @@ This philosophy includes using the [Markdown](https://en.wikipedia.org/wiki/Mark
 
 Just for fun, I’d add we could even rename it "**e-Docs-as-Code**", just to make it a [palindrome](https://en.wikipedia.org/wiki/Palindrome) 😉
 
+<br>
+[^1]: g3docs presentation by Riona MacNamara in 2015. https://www.usenix.org/conference/srecon16europe/program/presentation/macnamara
+<br>
+
 ## **Errors & drifts**
 Let's go back for a moment to the nature of the documents that interest us. An architecture document, whether it is a Technical Architecture Document (TAD), a [High-Level Design](https://en.wikipedia.org/wiki/High-level_design) (HLD), a [Low-Level Design](https://en.wikipedia.org/wiki/Low-level_design) (LLD), a technical diagram or a code descriptor (readme), is made up of **static information** (technical, functional) which is therefore recorded **manually**.
 
@@ -39,7 +43,7 @@ Let's see how it works, through four examples:
 * Three examples using Terraform,
 * One example using terraform-docs.
 
-## **1. Dynamic documentation with Terraform**
+<details><summary><b><font size="+2">1. Dynamic documentation with Terraform</b></font></summary>
 
 In concrete terms, how do you make a text variable? In the Terraform toolkit, two essential tools open the way to making text variabilization: string templates [interpolation](https://www.terraform.io/docs/language/expressions/strings.html#interpolation) and the [`templatefile`](https://www.terraform.io/docs/language/functions/templatefile.html) function.
 
@@ -61,9 +65,10 @@ These two concepts can then be associated and exploited in **many cases**:
 >Once a file is used as a template for Terraform, this variable syntax becomes exclusive to Terraform interpolation.
 >
 >This can cause problems if the template file is written in another language which also uses this syntax: Terraform will systematically replace the interpolation variable by its associated value, which will result in the script being "broken" from the point of view of the other language.
+> <br><br>
 
-### **Example #1: Simple variables interpolation in a Markdown file**
-
+<details><summary><b><font size="+1">Example #1: Simple variables interpolation in a Markdown file</font></b></summary>
+<br>
 Writing documentation in Markdown format is a good habit, because it is a simple format to write then proofread, non-proprietary, that many tools on the market allow to manipulate.
 
 In this first example, here is how to interpolate **simple variables** of type string, number or bool (for other types, see the complex interpolation example).
@@ -121,8 +126,10 @@ variable "Environment" {
 > This project consists in building a 3-tier infrastructure in a public cloud.
 
 * Interpolation variables have been replaced by the values associated with Terraform input variables, then formatted as expected by the Markdown syntax.
+</details>
 
-### Example #2 : Labels interpolation in an XML vector diagram.
+
+<details><summary><b><font size="+1">Example #2 : Labels interpolation in an XML vector diagram.</font></b></summary>
 
 Nothing's worse than a wrong technical diagram... Yes, but how can you manipulate a schema like code? Thanks to vector diagrams that are written... in XML! It will therefore be possible to create a template file and provide it with interpolation variables, as seen in the previous example.
 
@@ -130,7 +137,9 @@ Besides being free, [diagrams.net](https://www.diagrams.net/) (formerly draw.io)
 
 *Figure 1.2.1 - Vector diagram labels configuration in diagram.net GUI.*
 
-*TBD: insert diagram*
+<p align="center">
+    <img src="./article/diagram.template.png">
+</p>
 
 * Object labels were simply edited by hand in diagrams.net GUI, still using the same syntax ${...}.
 * You can display all kinds of strings: ID, name, IP address, etc. from the attributes of modules, resources or data sources.
@@ -139,7 +148,9 @@ Besides being free, [diagrams.net](https://www.diagrams.net/) (formerly draw.io)
 
 *Figure 1.2.2 - XML data compression option in diagrams.net GUI.*
 
-*TBD: insert screenshot*
+<p align="center">
+    <img src="./article/compression.option.png">
+</p>
 
 *Figure 1.2.3 - Main code configuration.*
 
@@ -213,9 +224,13 @@ variable "agw_backend_http_settings" {
 
 *Figure 1.2.5 - Rendered vector diagram.*
 
-*TBD: insert diagram*
+<p align="center">
+    <img src="./article/diagram.rendered.png">
+</p>
 
-### **Example #3 : Variables interpolation with directives in a Markdown file.**
+</details>
+
+<details><summary><b><font size="+1">Example #3: Variables interpolation with directives in a Markdown file.</font></b></summary>
 
 How to handle interpolation in more complex cases, when Terraform scripts include [conditional expressions](https://www.terraform.io/language/expressions/conditionals), or loops with the [`count`](https://www.terraform.io/language/meta-arguments/count) or [`for_each`](https://www.terraform.io/language/meta-arguments/for_each) meta-arguments?
 
@@ -315,7 +330,10 @@ variable "PostgreDbCollation" {
 > * For each instance, the charset is UTF8.
 > * For each instance, the collation is English_United States.1252.
 
-## **Variable iterative interpolation with terraform-docs**
+</details>
+</details>
+
+<details><summary><b><font size="+2">2. Variable iterative interpolation with terraform-docs</b></font></summary>
 
 Keeping up-to-date a readme file describing the use of a script or Terraform modules can quickly become a **chore**, especially because of the **large number of input and output variables** that a readme must contain. And a chore is a task that will quickly be **forgotten**, resulting in an **obsolete** readme file.
 
@@ -332,7 +350,7 @@ Terraform-docs must therefore be run separately. But then, is this a drift from 
 
 Not at all! In addition to manual execution, it is therefore planned to integrate with a pre-commit strategy (locally or within a CI/CD pipeline), thanks to a hook. Once the hook is configured, pre-commit allows you to trigger the documentation update at each git commit.
 
-### **Example #4 : Automatic documentation with terraform-docs**
+<details><summary><b><font size="+1">Example #4 : Automatic documentation with terraform-docs.</font></b></summary>
 
 A short example is better than a long speech: take a look.
 
@@ -357,6 +375,8 @@ content: |-
 | PostgreDbCharset | Charset for PostgreSQL database(s). | `string` | `"UTF8"` | no |
 | PostgreDbCollation | Collation for PostgreSQL database(s). | `string` | `"English_United States.1252"` | no |
 | PostgreDbList | List of PostgreSQL database instances names. | `list` | `[]` | no |
+</details>
+</details>
 
 <br><br>
 
@@ -375,16 +395,8 @@ Finally, to take full advantage of your "e-Docs-as-Code" with confidence, you mu
 <br><br>
 
 - - -
-
-<br><br>
-
 ## **Thanks**
 * [Alexandre Boué](https://www.linkedin.com/in/alexandre-boue/), initiator of the docs-as-code with Terraform and who passed on to me his passion for Terraform & AWS.
 * [David Frappart](https://www.linkedin.com/in/david-frappart-66625627/), with whom we pushed the model to the automated documentation of [Azure exported templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/export-template-portal), and who first spotted the terraform-docs project.
-
-<br><br>
-
-## **Bibliography**
-[^1]: g3docs presentation by Riona MacNamara in 2015. https://www.usenix.org/conference/srecon16europe/program/presentation/macnamara
 
 <br><br>
