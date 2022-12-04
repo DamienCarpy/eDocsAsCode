@@ -14,7 +14,7 @@ The **benefits** are **immediate**:
 * Guarantee of **accurate documentation** that follows the **evolution** of the project.
 
 ## **Docs-as-code to the rescue!**
-In the mid-2010s, [Riona MacNamara](https://www.linkedin.com/in/rionam) shared the observation with her colleagues of the poor general level of project documentation at Google. They decided to improve it and launched the "g3doc" project[^1].
+In the mid-2010s, [Riona MacNamara](https://www.usenix.org/conference/srecon16europe/program/presentation/macnamara) shared the observation with her colleagues of the poor general level of project documentation at Google. They decided to improve it and launched the "g3doc" project.
 
 Since this impulse and the conferences that followed, several developers and computer scientists have subsequently documented this approach on a community site "[Write the Docs](https://www.writethedocs.org/)", where they define [Documentation as Code](https://www.writethedocs.org/guide/docs-as-code/) as follows:
 
@@ -23,10 +23,6 @@ Since this impulse and the conferences that followed, several developers and com
 This philosophy includes using the [Markdown](https://en.wikipedia.org/wiki/Markdown) syntax, versioning docs with [Git](https://en.wikipedia.org/wiki/Git), etc.
 
 Just for fun, I’d add we could even rename it "**e-Docs-as-Code**", just to make it a [palindrome](https://en.wikipedia.org/wiki/Palindrome) 😉
-
-<br>
-[^1]: g3docs presentation by Riona MacNamara in 2015. https://www.usenix.org/conference/srecon16europe/program/presentation/macnamara
-<br>
 
 ## **Errors & drifts**
 Let's go back for a moment to the nature of the documents that interest us. An architecture document, whether it is a Technical Architecture Document (TAD), a [High-Level Design](https://en.wikipedia.org/wiki/High-level_design) (HLD), a [Low-Level Design](https://en.wikipedia.org/wiki/Low-level_design) (LLD), a technical diagram or a code descriptor (readme), is made up of **static information** (technical, functional) which is therefore recorded **manually**.
@@ -39,8 +35,8 @@ As a result, there is a high probability for the documentation to be wrong, for 
 
 By which mechanisms? Not only by **automatically completing** it from the Terraform code via the **reuse of its input and output variables**, etc., but also by ensuring that it is **always up-to-date**, by associating it with the **Terraform code lifecycle**, which allows the **generation** of the documentation **at each execution**.
 
-Let's see how it works, through four examples:
-* Three examples using Terraform,
+Let's see how it works, through some examples:
+* Four examples using Terraform,
 * One example using terraform-docs.
 
 ---
@@ -131,7 +127,7 @@ variable "Environment" {
 </details>
 
 
-<details><summary><b><font size="+1">Example #2 : Labels interpolation in an XML vector diagram.</font></b></summary>
+<details><summary><b><font size="+1">Example #2: Labels interpolation in an XML vector diagram.</font></b></summary>
 
 Nothing's worse than a wrong technical diagram... Yes, but how can you manipulate a schema like code? Thanks to vector diagrams that are written... in XML! It will therefore be possible to create a template file and provide it with interpolation variables, as seen in the previous example.
 
@@ -354,7 +350,7 @@ Terraform-docs must therefore be run separately. But then, is this a drift from 
 
 Not at all! In addition to manual execution, it is therefore planned to integrate with a pre-commit strategy (locally or within a CI/CD pipeline), thanks to a hook. Once the hook is configured, pre-commit allows you to trigger the documentation update at each git commit.
 
-<details><summary><b><font size="+1">Example #4 : Automatic documentation with terraform-docs.</font></b></summary>
+<details><summary><b><font size="+1">Example #4: Automatic documentation with terraform-docs.</font></b></summary>
 
 A short example is better than a long speech: take a look.
 
