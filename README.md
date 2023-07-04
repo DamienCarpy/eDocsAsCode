@@ -86,8 +86,8 @@ The cohabitation of this syntax with the Markdown syntax is not a problem. The f
 resource "local_file" "lld" {
   content = templatefile("lld.template.xml",
    {
-     ProjectName		= title(var.ProjectName),
-     Environment   	= var.Environment,
+     ProjectName = title(var.ProjectName),
+     Environment = var.Environment,
     }
   )
   filename = "${var.Environment}.${var.ProjectName}.rendered.lld.md"
