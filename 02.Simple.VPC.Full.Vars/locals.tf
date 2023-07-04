@@ -16,4 +16,11 @@ locals {
       var.public_subnets_netnum_offset + index(local.azs, az)
     )
   ] : []
+
+  instances_map = { for i in var.instances_list :
+      i => module.vpc.private_subnets[index(var.instances_list,i) % length(module.vpc.private_subnets)]
+    }
+
+  vpc_security_group_ids = [ for i in var.instances_list : module.vpc.default_security_group_id ]
+  
 }

@@ -12,6 +12,16 @@ module "vpc" {
   tags            = var.tags
 }
 
+module "ec2_instance" {
+  source                  = "terraform-aws-modules/ec2-instance/aws"
+  for_each                = local.instances_map
+  name                    = "instance-${each.key}"
+  instance_type           = var.instance_size
+  vpc_security_group_ids  = local.vpc_security_group_ids
+  subnet_id               = each.value
+  tags                    = var.tags
+}
+
 module "doc-vpc" {
   source                           = "../modules/doc-vpc"
   region                           = var.region
@@ -24,7 +34,6 @@ module "doc-vpc" {
   public_subnets                   = module.vpc.public_subnets
   public_subnets_cidr_blocks       = module.vpc.public_subnets_cidr_blocks
   public_subnets_ipv6_cidr_blocks  = module.vpc.public_subnets_ipv6_cidr_blocks
-
 }
 
 resource "local_file" "doc" {

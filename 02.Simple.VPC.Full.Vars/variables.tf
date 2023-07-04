@@ -70,6 +70,18 @@ variable "enable_vpn_gateway" {
   default     = false
 }
 
+variable "instances_list" {
+  description = "List of instances names"
+  type        = list(string)
+  default     = ["toto","titi","tata","tutu"]
+}
+
+variable "instance_size" {
+  description = "Family & size for instances."
+  type        = string
+  default     = "t3.nano"
+}
+
 variable "tags" {
   description = "A map of tags to add to all resources"
   type        = map(string)
