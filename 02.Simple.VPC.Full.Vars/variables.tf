@@ -1,3 +1,9 @@
+variable "project_name" {
+  description = "Name of the project."
+  type        = string
+  default     = "déjà-vu"
+}
+
 variable "region" {
   description = "Name of the main AWS region."
   type        = string
@@ -70,16 +76,28 @@ variable "enable_vpn_gateway" {
   default     = false
 }
 
-variable "instances_list" {
-  description = "List of instances names"
+variable "private_instances_list" {
+  description = "List of instances names that will be spread on private subnets."
   type        = list(string)
   default     = ["toto","titi","tata","tutu"]
 }
 
-variable "instance_size" {
+variable "private_instances_size" {
   description = "Family & size for instances."
   type        = string
   default     = "t3.nano"
+}
+
+variable "private_instances_ami_filter" {
+  description = "Family & size for instances."
+  type        = string
+  default     = "ubuntu-minimal/images/hvm-ssd/ubuntu-focal-20.04-*"
+}
+
+variable "private_instance_ami_ssm_parameter" {
+  description = "SSM parameter name for the AMI ID. For Amazon Linux AMI SSM parameters see [reference](https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-public-parameters-ami.html)"
+  type        = string
+  default     = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
 }
 
 variable "tags" {

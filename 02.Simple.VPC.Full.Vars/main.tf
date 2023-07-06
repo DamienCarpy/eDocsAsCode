@@ -16,14 +16,15 @@ module "ec2_instance" {
   source                  = "terraform-aws-modules/ec2-instance/aws"
   for_each                = local.instances_map
   name                    = "instance-${each.key}"
-  instance_type           = var.instance_size
+  instance_type           = var.private_instances_size
   vpc_security_group_ids  = local.vpc_security_group_ids
   subnet_id               = each.value
   tags                    = var.tags
 }
 
-module "doc-vpc" {
-  source                           = "../modules/doc-vpc"
+module "eDocsAsCode" {
+  source                           = "../modules/eDocsAsCode"
+  project_name                     = var.project_name
   region                           = var.region
   name                             = var.name
   vpc_cidr_block                   = var.cidr
@@ -34,14 +35,19 @@ module "doc-vpc" {
   public_subnets                   = module.vpc.public_subnets
   public_subnets_cidr_blocks       = module.vpc.public_subnets_cidr_blocks
   public_subnets_ipv6_cidr_blocks  = module.vpc.public_subnets_ipv6_cidr_blocks
+  
 }
 
 resource "local_file" "doc" {
-  content  = module.doc-vpc.doc-md
+  content  = module.eDocsAsCode.doc-md
   filename = "../doc/doc.md"
 }
 
 resource "local_file" "diagram" {
-  content  = module.doc-vpc.diagram-py
+  content  = module.eDocsAsCode.diagram-py
   filename = "../doc/diagram.py"
+}
+
+output "ami_info" {
+  value = data.aws_ami.ubuntu
 }

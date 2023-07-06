@@ -1,6 +1,7 @@
-# **VPC parameters**
+# **Project ${project_name}**
 ## **Diagram**
 ![${name}](./${name}.png)
+# **VPC**
 ## **Global parameters**
 * This VPC is named `${name}` and resides in the `${region}` region.
 * It uses the following CIDR block: `${vpc_cidr_block}`.
@@ -17,3 +18,6 @@
 %{ for az in azs ~}
 | ${az} | %{ if length(public_subnets) != 0 }${element(public_subnets,index(azs,az))} %{ else ~} "N/A" %{ endif ~} | %{ if length(public_subnets_cidr_blocks) != 0 }${element(public_subnets_cidr_blocks,index(azs,az))} %{ else ~}%{ if length(public_subnets_ipv6_cidr_blocks) != 0 }${element(public_subnets_ipv6_cidr_blocks,index(azs,az))} %{ else ~} "N/A" %{ endif ~}%{ endif ~}| %{ if length(private_subnets) != 0 }${element(private_subnets,index(azs,az))} %{ else ~} "N/A" %{ endif ~}| %{ if length(private_subnets_cidr_blocks) != 0 }${element(private_subnets_cidr_blocks,index(azs,az))} %{ else ~}%{ if length(private_subnets_ipv6_cidr_blocks) != 0 }${element(private_subnets_ipv6_cidr_blocks,index(azs,az))} %{ else ~} "N/A" %{ endif ~}%{ endif ~}|
 %{ endfor ~}
+
+# **Compute**
+## 

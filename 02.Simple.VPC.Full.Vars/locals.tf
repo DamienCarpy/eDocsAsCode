@@ -17,10 +17,10 @@ locals {
     )
   ] : []
 
-  instances_map = { for i in var.instances_list :
-      i => module.vpc.private_subnets[index(var.instances_list,i) % length(module.vpc.private_subnets)]
+  instances_map = { for i in var.private_instances_list :
+      i => module.vpc.private_subnets[index(var.private_instances_list,i) % length(module.vpc.private_subnets)]
     }
 
-  vpc_security_group_ids = [ for i in var.instances_list : module.vpc.default_security_group_id ]
-  
+  vpc_security_group_ids = [ for i in var.private_instances_list : module.vpc.default_security_group_id ]
+
 }
