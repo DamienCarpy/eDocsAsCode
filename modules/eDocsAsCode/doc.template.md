@@ -20,4 +20,5 @@
 %{ endfor ~}
 
 # **Compute**
-## 
+## Operating System
+Here's the description of the selected AMI for the private instances :

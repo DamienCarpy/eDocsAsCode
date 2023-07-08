@@ -19,6 +19,7 @@ module "ec2_instance" {
   instance_type           = var.private_instances_size
   vpc_security_group_ids  = local.vpc_security_group_ids
   subnet_id               = each.value
+  ami                     = data.aws_ami.this.id
   tags                    = var.tags
 }
 
@@ -35,7 +36,7 @@ module "eDocsAsCode" {
   public_subnets                   = module.vpc.public_subnets
   public_subnets_cidr_blocks       = module.vpc.public_subnets_cidr_blocks
   public_subnets_ipv6_cidr_blocks  = module.vpc.public_subnets_ipv6_cidr_blocks
-  
+  // private_instances_description    = coalesce(data.aws_ami.this.description, "custom OS without description"
 }
 
 resource "local_file" "doc" {
@@ -49,5 +50,5 @@ resource "local_file" "diagram" {
 }
 
 output "ami_info" {
-  value = data.aws_ami.ubuntu
+  value = data.aws_ami.this
 }
