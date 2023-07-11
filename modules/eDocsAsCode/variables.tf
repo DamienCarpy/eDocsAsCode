@@ -52,3 +52,18 @@ variable "public_subnets_ipv6_cidr_blocks" {
   description = "List of IPv6 cidr_blocks of public subnets in an IPv6 enabled VPC"
   type        = list(string)
 }
+
+variable "private_instances_list" {
+  description = "List of instances names that will be spread on private subnets."
+  type        = list(string)
+}
+
+variable "private_instances_ami_description_list" {
+  description = "Description for AMI of EC2 instances in private subnets"
+  type        = string
+}
+
+# variable "private_instances_type" {
+#   description = "Family & size for instances."
+#   type        = string
+# }

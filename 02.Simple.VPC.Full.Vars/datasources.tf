@@ -8,16 +8,30 @@ data "aws_availability_zones" "available" {
 }
 
 data "aws_ami" "this" {
-  most_recent = true
-  owners      = var.private_instances_ami_owner
+  most_recent = length(var.private_instances_ami_name) > 0 ? true : null
+  owners      = length(var.private_instances_ami_owner) > 0 ? var.private_instances_ami_owner : null
 
-  filter {
-    name   = "name"
-    values = var.private_instances_ami_name
+  dynamic "filter" {
+    for_each = length(var.private_instances_ami_name) > 0 ? [1] : []
+    content {
+      name     = "name"
+      values   = var.private_instances_ami_name
+    }
   }
 
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
+  dynamic "filter" {
+    for_each = length(var.private_instances_ami_name) > 0 ? [1] : []
+    content {
+      name   = "virtualization-type"
+      values =  ["hvm"]
+    }
+  }
+
+  dynamic "filter" {
+    for_each = length(var.private_instances_ami_name) == 0 ? [1] : []
+    content {
+      name   = "image-id"
+      values = distinct([ for i in var.private_instances_list : module.ec2_instance[i].ami ])
+    }
   }
 }

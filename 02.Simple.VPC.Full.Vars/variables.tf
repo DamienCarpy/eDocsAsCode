@@ -82,7 +82,7 @@ variable "private_instances_list" {
   default     = ["toto","titi","tata","tutu"]
 }
 
-variable "private_instances_size" {
+variable "private_instances_type" {
   description = "Family & size for instances."
   type        = string
   default     = "t3.nano"
@@ -91,13 +91,15 @@ variable "private_instances_size" {
 variable "private_instances_ami_owner" {
   description = "Owner name or ID for building a filter and find AMI."
   type        = list(string)
-  default     = ["amazon"]
+  default     = ["679593333241"]
+  # default     = []
 }
 
 variable "private_instances_ami_name" {
   description = "AMI partial name (using wildcards) for building a filter and find AMI."
   type        = list(string)
-  default     = ["amzn2-ami-hvm-*-x86_64-gp2"]
+  default     = ["ubuntu-minimal/images/hvm-ssd/ubuntu-focal-20.04-*"]
+  # default     = []
 }
 
 variable "tags" {

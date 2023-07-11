@@ -22,3 +22,12 @@
 # **Compute**
 ## Operating System
 Here's the description of the selected AMI for the private instances :
+`${private_instances_ami_description_list}`
+
+## Instance Type
+
+| Availability Zone | Public subnet ID | Public subnet IP range | Private subnet ID | Private subnet IP range | 
+| --- | --- | --- | --- | --- |
+%{ for az in azs ~}
+| ${az} | %{ if length(public_subnets) != 0 }${element(public_subnets,index(azs,az))} %{ else ~} "N/A" %{ endif ~} | %{ if length(public_subnets_cidr_blocks) != 0 }${element(public_subnets_cidr_blocks,index(azs,az))} %{ else ~}%{ if length(public_subnets_ipv6_cidr_blocks) != 0 }${element(public_subnets_ipv6_cidr_blocks,index(azs,az))} %{ else ~} "N/A" %{ endif ~}%{ endif ~}| %{ if length(private_subnets) != 0 }${element(private_subnets,index(azs,az))} %{ else ~} "N/A" %{ endif ~}| %{ if length(private_subnets_cidr_blocks) != 0 }${element(private_subnets_cidr_blocks,index(azs,az))} %{ else ~}%{ if length(private_subnets_ipv6_cidr_blocks) != 0 }${element(private_subnets_ipv6_cidr_blocks,index(azs,az))} %{ else ~} "N/A" %{ endif ~}%{ endif ~}|
+%{ endfor ~}

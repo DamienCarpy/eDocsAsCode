@@ -23,4 +23,7 @@ locals {
 
   vpc_security_group_ids = [ for i in var.private_instances_list : module.vpc.default_security_group_id ]
 
+  # private_instances_description = length(data.aws_ami.this) > 0 ? data.aws_ami.this[0].description : "No AMI description or no private instances deployed"
+  # private_instances_type        = var.private_instances_type != null ? var.private_instances_type : "No private instances deployed"
+  # private_instances_ami_description_list = [ for i in private_instances_list : data.data.aws_ami.this[i].description ]
 }
